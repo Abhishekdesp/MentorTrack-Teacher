@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                                 editor.apply();
 
                                 // ✅ Navigate to dashboard
-                                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
@@ -66,5 +68,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Login failed. Try again.", Toast.LENGTH_SHORT).show()
                     );
         });
+
     }
+
 }

@@ -1,41 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/send_message_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    tools:context=".SendMessageActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".SendMessageActivity">
 
-    <EditText
-        android:id="@+id/edit_subject"
+    <!-- Toolbar with back button -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Subject"
-        android:inputType="text"
-        android:padding="12dp"
-        android:background="@drawable/edittext_bg" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#9C27B0"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Feedback"
+        app:titleTextColor="@android:color/white"/>
 
-    <EditText
-        android:id="@+id/edit_message"
+    <!-- Content area -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:hint="Enter your message here"
-        android:gravity="top"
-        android:inputType="textMultiLine"
-        android:padding="12dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/edittext_bg" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <Button
-        android:id="@+id/btn_send_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Send Message"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/teal_700"
-        android:textColor="@android:color/white"
-        android:padding="14dp" />
+        <EditText
+            android:id="@+id/edit_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_bg"
+            android:hint="Subject"
+            android:inputType="text"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/edit_message"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edittext_bg"
+            android:gravity="top"
+            android:hint="Enter your message here"
+            android:inputType="textMultiLine"
+            android:padding="12dp" />
+
+        <Button
+            android:id="@+id/btn_send_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#C776D5"
+            android:padding="14dp"
+            android:text="Send Feedback"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 </LinearLayout>

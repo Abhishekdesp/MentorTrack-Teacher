@@ -26,6 +26,56 @@ public class Student {
         this.address = address;
         this.mentoremail = mentoremail;
         this.profileImage = profileImage;
-        this.password = password;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRollno() {
+        return rollno;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getDivision() {
+        return division;
+    }
+
+    public String getBatch() {
+        return batch;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public String getParentphone() {
+        return parentphone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getMentoremail() {
+        return mentoremail;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+
+    // Optional: Add setters if needed
 }

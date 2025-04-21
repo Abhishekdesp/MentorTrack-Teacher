@@ -5,12 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -28,8 +30,9 @@ import java.util.Map;
 
 public class StudentProfileActivity extends AppCompatActivity {
 
-    TextView name, rollNo, phone, parentphone, batch, division, department, address, email, mentorEmail, password, year;
-    ImageView imageProfile, imageFeedback;
+    TextView name, rollNo, phone, parentphone, batch, division, department, address, email, mentorEmail, year;
+    ImageView imageProfile;
+    Button feedbackButton, chatButton;
     FirebaseFirestore db;
 
     @Override
@@ -37,9 +40,21 @@ public class StudentProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_profile);
 
+        // Initialize Toolbar and set back button
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Enable back button in the action bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setTitle("Student Profile");
+        }
+
         // Bind views
         imageProfile = findViewById(R.id.student_image);
-        imageFeedback = findViewById(R.id.feedback_icon);
+        feedbackButton = findViewById(R.id.feedback_button);
+        chatButton = findViewById(R.id.chat_button);
         name = findViewById(R.id.student_name);
         rollNo = findViewById(R.id.student_rollno);
         phone = findViewById(R.id.student_phonenumber);
@@ -51,7 +66,6 @@ public class StudentProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.student_email);
         mentorEmail = findViewById(R.id.student_mentoremail);
         year = findViewById(R.id.student_year);
-        password = findViewById(R.id.student_password);
 
         db = FirebaseFirestore.getInstance();
 
@@ -64,8 +78,8 @@ public class StudentProfileActivity extends AppCompatActivity {
             finish();
         }
 
-        // Set click listener for feedback image
-        imageFeedback.setOnClickListener(v -> {
+        // Set click listeners for feedback and chat buttons
+        feedbackButton.setOnClickListener(v -> {
             if (studentEmail != null) {
                 Intent intent = new Intent(StudentProfileActivity.this, SendMessageActivity.class);
                 intent.putExtra("email", studentEmail);
@@ -74,6 +88,22 @@ public class StudentProfileActivity extends AppCompatActivity {
                 Toast.makeText(this, "Student email not found", Toast.LENGTH_SHORT).show();
             }
         });
+
+        chatButton.setOnClickListener(v -> {
+            if (studentEmail != null) {
+                Intent intent = new Intent(StudentProfileActivity.this, ChatActivity.class);
+                intent.putExtra("email", studentEmail);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Student email not found", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     private void loadStudentProfile(String studentEmail) {
@@ -92,7 +122,6 @@ public class StudentProfileActivity extends AppCompatActivity {
                         email.setText("Email: " + doc.getString("email"));
                         mentorEmail.setText("Mentor Email: " + doc.getString("mentoremail"));
                         year.setText("Year: " + doc.getString("year"));
-                        password.setText("Password: " + doc.getString("password"));
 
                         String profileImageBase64 = doc.getString("profileImage");
                         if (profileImageBase64 != null && !profileImageBase64.isEmpty()) {

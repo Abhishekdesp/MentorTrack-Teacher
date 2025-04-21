@@ -1,5 +1,7 @@
 package com.example.mentortrack_teacher;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -7,13 +9,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
+import java.util.HashMap;
 import java.util.Map;
 
 public class SendMessageActivity extends AppCompatActivity {
@@ -22,21 +25,42 @@ public class SendMessageActivity extends AppCompatActivity {
     private Button btnSend;
     private FirebaseFirestore db;
     private String studentEmail;
+    private String teacheremail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_message);
 
+        // Initialize Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Enable back button in the action bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setTitle("Feedback");
+        }
+
         editSubject = findViewById(R.id.edit_subject);
         editMessage = findViewById(R.id.edit_message);
         btnSend = findViewById(R.id.btn_send_message);
 
         db = FirebaseFirestore.getInstance();
-
         studentEmail = getIntent().getStringExtra("email");
 
+        // Get teacher email from SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("MentorPrefs", Context.MODE_PRIVATE);
+        teacheremail = prefs.getString("email", "");
+
         btnSend.setOnClickListener(v -> sendFeedback());
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     private void sendFeedback() {
@@ -58,11 +82,18 @@ public class SendMessageActivity extends AppCompatActivity {
             return;
         }
 
-        // Format time to "HH:mm"
+        if (teacheremail == null || teacheremail.isEmpty()) {
+            Toast.makeText(this, "Teacher email missing", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String formattedTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
 
         Map<String, Object> feedbackMap = new HashMap<>();
-        feedbackMap.put(subject, message);
+        feedbackMap.put("subject", subject);
+        feedbackMap.put("message", message);
+        feedbackMap.put("teacheremail", teacheremail);
+        feedbackMap.put("timestamp", formattedTime);
 
         db.collection("students")
                 .document(studentEmail)

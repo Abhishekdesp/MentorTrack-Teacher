@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".DashboardActivity">
 
     <!-- Toolbar -->
@@ -17,6 +17,29 @@
         android:title="Assigned Students"
         android:titleTextColor="@android:color/white"
         app:titleCentered="true" />
+
+    <!-- Button Container -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <!-- Schedule Meeting Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnScheduleMeeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:text="Schedule Meeting"
+            app:iconTint="@android:color/white"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@android:color/white"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+    </RelativeLayout>
 
     <!-- Card Container for Students List -->
     <com.google.android.material.card.MaterialCardView
@@ -33,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp" />
+
     </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>
