@@ -1,0 +1,14 @@
+{
+  "name": "mentortrack-fireflies-functions",
+  "version": "1.0.0",
+  "description": "Fireflies.ai integration for MentorTrack",
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1",
+    "node-fetch": "^2.6.7"
+  },
+  "engines": {
+    "node": "18"
+  }
+}

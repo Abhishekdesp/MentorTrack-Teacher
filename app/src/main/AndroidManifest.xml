@@ -18,7 +18,6 @@
         android:theme="@style/Theme.MentorTrackTeacher"
         tools:targetApi="31">
 
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -34,25 +33,38 @@
             android:exported="false" />
         <activity
             android:name=".SendMessageActivity"
-            android:exported="false" /> <!-- Main Launcher Activity -->
+            android:exported="false" />
+        <!-- Main Launcher Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Admin Profile Activity (exported = true) -->
+        </activity>
+        <!-- Admin Profile Activity (exported = true) -->
         <activity
             android:name=".AdminProfileActivity"
-            android:exported="true" /> <!-- Student Profile Activity -->
+            android:exported="true" />
+        <!-- Student Profile Activity -->
         <activity
             android:name=".StudentProfileActivity"
-            android:exported="false" /> <!-- Dashboard Activity -->
+            android:exported="false" />
+        <!-- Dashboard Activity -->
         <activity
             android:name=".DashboardActivity"
             android:exported="false" />
+
+        <!-- ADD THIS LINE FOR ATTENDANCE HISTORY ACTIVITY -->
+        <activity
+            android:name=".AttendanceHistoryActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MeetingDetailsActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

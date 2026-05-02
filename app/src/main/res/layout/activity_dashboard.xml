@@ -19,27 +19,48 @@
         app:titleCentered="true" />
 
     <!-- Button Container -->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <!-- Schedule Meeting Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnScheduleMeeting"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Schedule Meeting"
-            app:iconTint="@android:color/white"
             app:cornerRadius="8dp"
             android:backgroundTint="@color/purple_500"
             android:textColor="@android:color/white"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"/>
+            android:padding="16dp" />
 
-    </RelativeLayout>
+        <!-- View Attendance History Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnViewAttendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="View Attendance History"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@android:color/white"
+            android:padding="16dp" />
+
+        <!-- Sync Google Meet Attendance Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSyncAttendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔄 Sync Google Meet Attendance"
+            app:cornerRadius="8dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white"
+            android:padding="16dp" />
+
+    </LinearLayout>
 
     <!-- Card Container for Students List -->
     <com.google.android.material.card.MaterialCardView

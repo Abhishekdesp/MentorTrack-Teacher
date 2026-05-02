@@ -25,6 +25,12 @@
     <color name="text_primary">#212121</color>
     <color name="text_secondary">#757575</color>
 
+    <!-- New colors for gradients -->
+    <color name="purple_gradient_start">#667eea</color>
+    <color name="purple_gradient_end">#764ba2</color>
+    <color name="blue_gradient_start">#3b82f6</color>
+    <color name="blue_gradient_end">#1d4ed8</color>
+
     <!-- Link or call-to-action color -->
     <color name="link">#1E88E5</color>
 </resources>
